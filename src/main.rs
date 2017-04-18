@@ -49,7 +49,7 @@ fn main() {
             }
             "#
         )
-        .headers(headers)
+        .headers(headers.clone())
         .send()
         .unwrap();
 
