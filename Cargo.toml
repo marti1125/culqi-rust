@@ -1,0 +1,8 @@
+[package]
+name = "culqi"
+version = "0.1.0"
+authors = ["Willy Aguirre <marti1125@gmail.com>"]
+
+[dependencies]
+hyper = "0.10"
+hyper-native-tls = "0.2.2"
