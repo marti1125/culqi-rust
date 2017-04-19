@@ -7,3 +7,4 @@ authors = ["Willy Aguirre <marti1125@gmail.com>"]
 hyper = "0.10"
 hyper-native-tls = "0.2.2"
 rand = "0.3.15"
+rustc-serialize = "0.3.23"

@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, RustcDecodable, RustcEncodable)]
 pub struct Token {
     pub card_number: String,
     pub cvv: String,

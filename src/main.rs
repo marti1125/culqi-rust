@@ -1,6 +1,7 @@
 extern crate hyper;
 extern crate hyper_native_tls;
 extern crate rand;
+extern crate rustc_serialize;
 
 use hyper::Client;
 use hyper::header::{Headers, Authorization, Bearer, ContentType};
@@ -9,6 +10,8 @@ use hyper::net::HttpsConnector;
 use hyper_native_tls::NativeTlsClient;
 use std::io::Read;
 use rand::Rng;
+use rustc_serialize::json;
+use rustc_serialize::json::encode;
 
 mod culqi;
 
@@ -18,7 +21,11 @@ fn main() {
     println!("Token {:?}", token);
     println!("Token CVV {:?}", token.cvv);
 
-    let mut api_base_url = "https://api.culqi.com/v2";
+    let encoded_token = json::encode(&token).unwrap();
+
+    println!("TOKEN JSON {:?}", encoded_token);
+
+    let mut api_base_url : String = "https://api.culqi.com/v2".into();
 
     let mut rng = rand::thread_rng();
 
@@ -48,12 +55,16 @@ fn main() {
     );
 
     //let email = "wwww_www".to_string()+rng+"@gmail.com".to_string();
+    let token_url : String = "/tokens".into();
+    api_base_url.push_str(&token_url);
 
-    // let create_token = client.post(api_base_url+"/tokens")
-    //     .body()
-    //     .headers(headers.clone())
-    //     .send()
-    //     .unwrap();
+    let create_token = client.post(&api_base_url)
+        .body(&encoded_token)
+        .headers(headers.clone())
+        .send()
+        .unwrap();
+
+    println!("RESULT {:?}", create_token);
 
     // let create_customer = client.post("https://api.culqi.com/v2/customers")
     //     .body(
