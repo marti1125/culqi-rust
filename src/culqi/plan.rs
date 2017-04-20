@@ -1,4 +1,4 @@
-#[derive(Debug)]
+#[derive(Debug, RustcEncodable)]
 pub struct Plan {
     pub name: String,
     pub amount: i32,
