@@ -31,8 +31,8 @@ impl Token {
          client.post();
     }
 
-    pub fn all(client: &Client, id: &str) {
-        client.get(&format!("/tokens/{}", id));
+    pub fn all(client: &Client, id: &str) -> String {
+        client.get(&format!("/tokens/{}", id))
     }
 
 }

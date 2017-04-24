@@ -37,8 +37,8 @@ impl Customer {
          client.post();
     }
 
-    pub fn all(client: &Client, id: &str) {
-        client.get(&format!("/customers/{}", id));
+    pub fn all(client: &Client, id: &str) -> String {
+        client.get(&format!("/customers/{}", id))
     }
 
 }

@@ -1,4 +1,5 @@
 use hyper::Client as HttpClient;
+use hyper::client::Response;
 use hyper::header::{Headers, Authorization, Bearer, ContentType};
 use hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
 use hyper::net::HttpsConnector;
@@ -42,9 +43,16 @@ impl Client {
         return headers;
     }
 
-    pub fn get(&self, path: &str) {
+    pub fn get(&self, path: &str) -> String {
+        let mut body_response = String::new();
         let url = get_url(path);
-        let request = self.client.get(&url).headers(self.get_headers()).send().unwrap();
+        let request = self.client.get(&url)
+                .headers(self.get_headers())
+                .send()
+                .unwrap()
+                .read_to_string(&mut body_response)
+                .unwrap();
+        return body_response;
     }
 
     pub fn post(&self) {

@@ -4,6 +4,14 @@ fn main() {
 
     let client = culqi::Client::new("sk_test_UTCQSGcXW8bCyU59");
 
+    let charges = culqi::Charge::all(&client, "chr_test_oOLn2IdX2fQ1jyG2");
+
+    let plans = culqi::Plan::all(&client, "pln_test_UqFVmhqDKQo9ygbJ");
+
+    println!("Charges {:?}", charges);
+
+    println!("Plans {:?}", plans);
+
     /*let token = culqi::Token::new("41111111", "123", "09", "20", "ww@me.com");
     println!("Token {:?}", token);
     println!("Token CVV {:?}", token.cvv);

@@ -25,8 +25,8 @@ impl Refund {
          client.post();
     }
 
-    pub fn all(client: &Client, id: &str) {
-        client.get(&format!("/refunds/{}", id));
+    pub fn all(client: &Client, id: &str) -> String {
+        client.get(&format!("/refunds/{}", id))
     }
 
 }

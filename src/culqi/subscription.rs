@@ -22,8 +22,8 @@ impl Subscription {
          client.post();
     }
 
-    pub fn all(client: &Client, id: &str) {
-        client.get(&format!("/subscriptions/{}", id));
+    pub fn all(client: &Client, id: &str) -> String {
+        client.get(&format!("/subscriptions/{}", id))
     }
 
 }

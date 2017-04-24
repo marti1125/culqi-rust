@@ -15,5 +15,6 @@ extern crate culqi;
 fn main() {
 
     let client = culqi::Client::new("KEY_VALUE");
+    
 }
 ```

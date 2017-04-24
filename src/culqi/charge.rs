@@ -24,12 +24,12 @@ impl Charge {
         }
     }
 
-    pub fn create(client: &Client, charge: &Charge){
+    pub fn create(client: &Client, charge: &Charge) {
          client.post();
     }
 
-    pub fn all(client: &Client, id: &str) {
-        client.get(&format!("/charges/{}", id));
+    pub fn all(client: &Client, id: &str) -> String {
+        client.get(&format!("/charges/{}", id))
     }
 
 }
