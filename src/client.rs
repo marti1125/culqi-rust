@@ -1,12 +1,9 @@
-extern crate hyper;
-
 use hyper::Client as HttpClient;
 use hyper::header::{Headers, Authorization, Bearer, ContentType};
 use hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
 use hyper::net::HttpsConnector;
 use hyper_native_tls::NativeTlsClient;
 use std::io::Read;
-use rand::Rng;
 use rustc_serialize::json;
 use rustc_serialize::json::encode;
 
@@ -50,17 +47,14 @@ impl Client {
         let request = self.client.get(&url).headers(self.get_headers()).send().unwrap();
     }
 
-    // pub fn post() {
-    //
-    // }
-    //
-    // pub fn delete() {
-    //
-    // }
-    //
-    // pub fn patch() {
-    //
-    // }
+    pub fn post(&self) {
+    }
+
+    pub fn delete(&self) {
+    }
+
+    pub fn patch(&self) {
+    }
 
 }
 

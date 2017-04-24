@@ -1,23 +1,10 @@
-extern crate hyper;
-extern crate hyper_native_tls;
-extern crate rand;
-extern crate rustc_serialize;
-
-use hyper::Client;
-use hyper::header::{Headers, Authorization, Bearer, ContentType};
-use hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
-use hyper::net::HttpsConnector;
-use hyper_native_tls::NativeTlsClient;
-use std::io::Read;
-use rand::Rng;
-use rustc_serialize::json;
-use rustc_serialize::json::encode;
-
-mod culqi;
+extern crate culqi;
 
 fn main() {
 
-    let token = culqi::Token::new("41111111", "123", "09", "20", "ww@me.com");
+    let client = culqi::Client::new("sk_test_UTCQSGcXW8bCyU59");
+
+    /*let token = culqi::Token::new("41111111", "123", "09", "20", "ww@me.com");
     println!("Token {:?}", token);
     println!("Token CVV {:?}", token.cvv);
 
@@ -95,5 +82,5 @@ fn main() {
 
     println!("RESPONSE {:?}", get_plan);
     println!("BODY {:?}", plan);
-
+    */
 }
