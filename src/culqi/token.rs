@@ -1,3 +1,5 @@
+use client::Client;
+
 #[derive(Debug, RustcEncodable)]
 pub struct Token {
     pub card_number: String,
@@ -8,6 +10,7 @@ pub struct Token {
 }
 
 impl Token {
+
     pub fn new<S: Into<String>>(
         card_number: S,
         cvv: S,
@@ -23,4 +26,13 @@ impl Token {
             email: email.into()
         }
     }
+
+    pub fn create(client: &Client, token: &Token) {
+         client.post();
+    }
+
+    pub fn all(client: &Client, id: &str) {
+        client.get(&format!("/tokens/{}", id));
+    }
+
 }
