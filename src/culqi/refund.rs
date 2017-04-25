@@ -24,8 +24,7 @@ impl Refund {
     }
 
     pub fn create(client: &Client, refund: &Refund) -> String {
-        let mut refund_json = serde_json::to_string(refund);
-        client.post("/refunds", refund_json.unwrap().as_str())
+        client.post("/refunds", refund)
     }
 
     pub fn all(client: &Client, id: &str) -> String {

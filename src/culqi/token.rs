@@ -30,8 +30,7 @@ impl Token {
     }
 
     pub fn create(client: &Client, token: &Token) -> String {
-        let mut token_json = serde_json::to_string(token);
-        client.posta("/tokens", token_json.unwrap().as_str())
+        client.post("/tokens", token)
     }
 
     pub fn all(client: &Client, id: &str) -> String {

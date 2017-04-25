@@ -2,7 +2,6 @@ extern crate serde;
 extern crate serde_json;
 
 use hyper::Client as HttpClient;
-use hyper::client::Response;
 use hyper::header::{Headers, Authorization, Bearer, ContentType};
 use hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
 use hyper::net::HttpsConnector;
@@ -47,7 +46,7 @@ impl Client {
     pub fn get(&self, path: &str) -> String {
         let mut body_response = String::new();
         let url = get_url(path);
-        let request = self.client.get(&url)
+        self.client.get(&url)
                 .headers(self.get_headers())
                 .send()
                 .unwrap()
@@ -56,25 +55,12 @@ impl Client {
         return body_response;
     }
 
-    pub fn post(&self, path: &str, body: &str) -> String {
-        let mut body_response = String::new();
-        let url = get_url(path);
-        let request = self.client.get(&url)
-                .headers(self.get_headers())
-                .body(&format!("r#{:?}#", body))
-                .send()
-                .unwrap()
-                .read_to_string(&mut body_response)
-                .unwrap();
-        return body_response;
-    }
-
-    pub fn posta<P: serde::Serialize>(&self, path: &str, body: P) -> String {
+    pub fn post<P: serde::Serialize>(&self, path: &str, body: P) -> String {
         let mut body_response = String::new();
         let url = get_url(path);
         let body_json = serde_json::to_string(&body);
         let body = body_json.unwrap();
-        let request = self.client.get(&url)
+        self.client.get(&url)
                 .headers(self.get_headers())
                 .body(&format!("r#{:?}#", body))
                 .send()

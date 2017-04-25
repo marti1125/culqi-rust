@@ -33,8 +33,7 @@ impl Plan {
     }
 
     pub fn create(client: &Client, plan: &Plan) -> String {
-        let mut plan_json = serde_json::to_string(plan);
-        client.post("/plans", plan_json.unwrap().as_str())
+        client.post("/plans", plan)
     }
 
     pub fn all(client: &Client, id: &str) -> String {

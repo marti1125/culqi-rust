@@ -21,8 +21,7 @@ impl Card {
     }
 
     pub fn create(client: &Client, card: &Card) -> String {
-        let mut card_json = serde_json::to_string(card);
-        client.post("/cards", card_json.unwrap().as_str())
+        client.post("/cards", card)
     }
 
     pub fn all(client: &Client, id: &str) -> String {

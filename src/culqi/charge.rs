@@ -27,8 +27,7 @@ impl Charge {
     }
 
     pub fn create(client: &Client, charge: &Charge) -> String {
-        let mut charge_json = serde_json::to_string(charge);
-        client.post("/charges", charge_json.unwrap().as_str())
+        client.post("/charges", charge)
     }
 
     pub fn all(client: &Client, id: &str) -> String {

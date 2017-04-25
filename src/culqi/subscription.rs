@@ -21,8 +21,7 @@ impl Subscription {
     }
 
     pub fn create(client: &Client, subscription: &Subscription) -> String {
-        let mut subscription_json = serde_json::to_string(subscription);
-        client.post("/subscriptions", subscription_json.unwrap().as_str())
+        client.post("/subscriptions", subscription)
     }
 
     pub fn all(client: &Client, id: &str) -> String {
