@@ -1,3 +1,6 @@
+extern crate serde;
+extern crate serde_json;
+
 use hyper::Client as HttpClient;
 use hyper::client::Response;
 use hyper::header::{Headers, Authorization, Bearer, ContentType};
@@ -5,8 +8,6 @@ use hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
 use hyper::net::HttpsConnector;
 use hyper_native_tls::NativeTlsClient;
 use std::io::Read;
-use rustc_serialize::json;
-use rustc_serialize::json::encode;
 
 pub struct Client {
     client: HttpClient,
@@ -55,7 +56,32 @@ impl Client {
         return body_response;
     }
 
-    pub fn post(&self) {
+    pub fn post(&self, path: &str, body: &str) -> String {
+        let mut body_response = String::new();
+        let url = get_url(path);
+        let request = self.client.get(&url)
+                .headers(self.get_headers())
+                .body(&format!("r#{:?}#", body))
+                .send()
+                .unwrap()
+                .read_to_string(&mut body_response)
+                .unwrap();
+        return body_response;
+    }
+
+    pub fn posta<P: serde::Serialize>(&self, path: &str, body: P) -> String {
+        let mut body_response = String::new();
+        let url = get_url(path);
+        let body_json = serde_json::to_string(&body);
+        let body = body_json.unwrap();
+        let request = self.client.get(&url)
+                .headers(self.get_headers())
+                .body(&format!("r#{:?}#", body))
+                .send()
+                .unwrap()
+                .read_to_string(&mut body_response)
+                .unwrap();
+        return body_response;
     }
 
     pub fn delete(&self) {
@@ -69,7 +95,3 @@ impl Client {
 fn get_url(path: &str) -> String {
     String::from("https://api.culqi.com/v2") + path
 }
-
-// fn send() {
-//
-// }

@@ -1,6 +1,8 @@
+extern crate serde_json;
+
 use client::Client;
 
-#[derive(Debug, RustcEncodable)]
+#[derive(Debug, Serialize)]
 pub struct Token {
     pub card_number: String,
     pub cvv: String,
@@ -27,8 +29,9 @@ impl Token {
         }
     }
 
-    pub fn create(client: &Client, token: &Token) {
-         client.post();
+    pub fn create(client: &Client, token: &Token) -> String {
+        let mut token_json = serde_json::to_string(token);
+        client.posta("/tokens", token_json.unwrap().as_str())
     }
 
     pub fn all(client: &Client, id: &str) -> String {

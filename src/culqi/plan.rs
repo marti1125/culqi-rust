@@ -1,6 +1,8 @@
+extern crate serde_json;
+
 use client::Client;
 
-#[derive(Debug, RustcEncodable)]
+#[derive(Debug, Serialize)]
 pub struct Plan {
     pub name: String,
     pub amount: i32,
@@ -30,8 +32,9 @@ impl Plan {
         }
     }
 
-    pub fn create(client: &Client, plan: &Plan) {
-         client.post();
+    pub fn create(client: &Client, plan: &Plan) -> String {
+        let mut plan_json = serde_json::to_string(plan);
+        client.post("/plans", plan_json.unwrap().as_str())
     }
 
     pub fn all(client: &Client, id: &str) -> String {
