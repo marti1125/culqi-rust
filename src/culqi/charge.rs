@@ -30,6 +30,10 @@ impl Charge {
         client.post("/charges", charge)
     }
 
+    pub fn capture(client: &Client, id: &str) -> String {
+        client.capture(&format!("/charges/{}/capture", id))
+    }
+
     pub fn all(client: &Client, id: &str) -> String {
         client.get(&format!("/charges/{}", id))
     }

@@ -85,6 +85,18 @@ impl Client {
     pub fn patch(&self) {
     }
 
+    pub fn capture(&self, path: &str) -> String {
+        let mut body_response = String::new();
+        let url = get_url(path);
+        self.client.post(&url)
+                .headers(self.get_headers())
+                .send()
+                .unwrap()
+                .read_to_string(&mut body_response)
+                .unwrap();
+        return body_response;
+    }
+
 }
 
 fn get_url(path: &str) -> String {
