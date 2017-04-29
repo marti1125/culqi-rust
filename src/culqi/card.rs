@@ -24,6 +24,10 @@ impl Card {
         client.post("/cards", card)
     }
 
+    pub fn delete(client: &Client, id: &str) -> String {
+        client.delete(&format!("/cards/{}", id))
+    }
+
     pub fn all(client: &Client, id: &str) -> String {
         client.get(&format!("/cards/{}", id))
     }

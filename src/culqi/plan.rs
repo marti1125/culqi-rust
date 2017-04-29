@@ -36,6 +36,10 @@ impl Plan {
         client.post("/plans", plan)
     }
 
+    pub fn delete(client: &Client, id: &str) -> String {
+        client.delete(&format!("/plans/{}", id))
+    }
+
     pub fn all(client: &Client, id: &str) -> String {
         client.get(&format!("/plans/{}", id))
     }

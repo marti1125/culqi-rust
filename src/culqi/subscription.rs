@@ -24,6 +24,10 @@ impl Subscription {
         client.post("/subscriptions", subscription)
     }
 
+    pub fn delete(client: &Client, id: &str) -> String {
+        client.delete(&format!("/subscriptions/{}", id))
+    }
+
     pub fn all(client: &Client, id: &str) -> String {
         client.get(&format!("/subscriptions/{}", id))
     }

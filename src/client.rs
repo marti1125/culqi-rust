@@ -70,7 +70,16 @@ impl Client {
         return body_response;
     }
 
-    pub fn delete(&self) {
+    pub fn delete(&self, path: &str) -> String {
+        let mut body_response = String::new();
+        let url = get_url(path);
+        self.client.delete(&url)
+                .headers(self.get_headers())
+                .send()
+                .unwrap()
+                .read_to_string(&mut body_response)
+                .unwrap();
+        return body_response;
     }
 
     pub fn patch(&self) {
