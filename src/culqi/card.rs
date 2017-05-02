@@ -1,11 +1,10 @@
 extern crate serde_json;
 
 use client::Client;
+use std::collections::HashMap;
 
 #[derive(Debug, Serialize)]
 pub struct Card {
-    pub customer_id: String,
-    pub token_id: String
 }
 
 impl Card {
@@ -13,14 +12,15 @@ impl Card {
     pub fn new<S: Into<String>>(
         customer_id: S,
         token_id: S
-    ) -> Card {
-        Card {
-            customer_id: customer_id.into(),
-            token_id: token_id.into()
-        }
+    ) -> HashMap<String, serde_json::Value> {
+        let mut map: HashMap<String, serde_json::Value>;
+        map = HashMap::new();
+        map.insert("customer_id".to_string(), json!(customer_id.into()));
+        map.insert("customer_id".to_string(), json!(token_id.into()));
+        return map;
     }
 
-    pub fn create(client: &Client, card: &Card) -> String {
+    pub fn create(client: &Client, card: &HashMap<String, serde_json::Value>) -> String {
         client.post("/cards", card)
     }
 
@@ -28,7 +28,7 @@ impl Card {
         client.delete(&format!("/cards/{}", id))
     }
 
-    pub fn all(client: &Client, id: &str) -> String {
+    pub fn retrieve(client: &Client, id: &str) -> String {
         client.get(&format!("/cards/{}", id))
     }
 

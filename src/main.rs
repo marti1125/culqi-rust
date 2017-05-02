@@ -1,21 +1,52 @@
+extern crate serde;
+extern crate serde_json;
 extern crate culqi;
+
+use serde_json::{Value};
 
 fn main() {
 
-    let new_token = culqi::Token::new("4111111111111111","123","03","20","test@test.com");
+    //let new_token = culqi::Token::new("4111111111111111","123","03","20","test@test.com");
 
-    let client = culqi::Client::new("sk_test_UTCQSGcXW8bCyU59");
+    //let client_pk = culqi::Client::new("pk_test_vzMuTHoueOMlgUPj");
+    //let client_sk = culqi::Client::new("sk_test_UTCQSGcXW8bCyU59");
 
-    let get_token = culqi::Token::create(&client, &new_token);
+    //let get_token = culqi::Token::create(&client_pk, &new_token);
 
-    let charges = culqi::Charge::all(&client, "chr_test_oOLn2IdX2fQ1jyG2");
+    //let token_json: Value = serde_json::from_str(&get_token).unwrap();
 
-    let plans = culqi::Plan::all(&client, "pln_test_UqFVmhqDKQo9ygbJ");
+    let new_charge = culqi::Charge::new("1000", "PE", "will@me.com", "ffff");
 
-    println!("New Token {:?}", get_token);
+    let client_sk = culqi::Client::new("sk_test_UTCQSGcXW8bCyU59");
 
-    println!("Charges {:?}", charges);
+    let get_charge = culqi::Charge::create(&client_sk, &new_charge);
 
-    println!("Plans {:?}", plans);
+    println!(" Response {:?}", get_charge);
+
+    //let ref token_id = token_json["data"][0]["id"];
+
+    //let id = token_id.to_string().replace("\"","");
+
+    //let new_charge = culqi::Charge::new("1000", "PE", "will@me.com", &id);
+
+    //let get_charge = culqi::Charge::create(&client_sk, &new_charge);
+
+    //let charges = culqi::Charge::all(&client, "chr_test_oOLn2IdX2fQ1jyG2");
+
+    //let plans = culqi::Plan::all(&client, "pln_test_UqFVmhqDKQo9ygbJ");
+
+    //println!("New Token {:?}", get_token);
+
+    //println!("Charges {:?}", charges);
+
+    //println!("Plans {:?}", plans);
+
+    //let token_json: Value = serde_json::from_str(&get_token).unwrap();
+
+    //let ref token_id = token_json["data"][0]["id"];
+
+    //println!(" Token JSON {:?}", id);
+
+    //println!(" Charge JSON {:?}", get_charge);
 
 }

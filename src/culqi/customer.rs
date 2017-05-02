@@ -1,16 +1,10 @@
 extern crate serde_json;
 
 use client::Client;
+use std::collections::HashMap;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug)]
 pub struct Customer {
-    pub first_name: String,
-    pub last_name: String,
-    pub email: String,
-    pub address: String,
-    pub address_city: String,
-    pub country_code: String,
-    pub phone_number: String
 }
 
 impl Customer {
@@ -23,19 +17,20 @@ impl Customer {
         address_city: S,
         country_code: S,
         phone_number: S
-    ) -> Customer {
-        Customer {
-            first_name: first_name.into(),
-            last_name: last_name.into(),
-            email: email.into(),
-            address: address.into(),
-            address_city: address_city.into(),
-            country_code: country_code.into(),
-            phone_number: phone_number.into()
-        }
+    ) -> HashMap<String, serde_json::Value> {
+        let mut map: HashMap<String, serde_json::Value>;
+        map = HashMap::new();
+        map.insert("first_name".to_string(), json!(first_name.into()));
+        map.insert("last_name".to_string(), json!(last_name.into()));
+        map.insert("email".to_string(), json!(email.into()));
+        map.insert("address".to_string(), json!(address.into()));
+        map.insert("address_city".to_string(), json!(address_city.into()));
+        map.insert("country_code".to_string(), json!(country_code.into()));
+        map.insert("phone_number".to_string(), json!(phone_number.into()));
+        return map;
     }
 
-    pub fn create(client: &Client, customer: &Customer) -> String {
+    pub fn create(client: &Client, customer: &HashMap<String, serde_json::Value>) -> String {
         client.post("/customers", customer)
     }
 
@@ -43,7 +38,7 @@ impl Customer {
         client.delete(&format!("/customers/{}", id))
     }
 
-    pub fn all(client: &Client, id: &str) -> String {
+    pub fn retrieve(client: &Client, id: &str) -> String {
         client.get(&format!("/customers/{}", id))
     }
 

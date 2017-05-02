@@ -1,12 +1,15 @@
 extern crate serde;
 extern crate serde_json;
+extern crate reqwest;
 
 use hyper::Client as HttpClient;
 use hyper::header::{Headers, Authorization, Bearer, ContentType};
 use hyper::mime::{Mime, TopLevel, SubLevel, Attr, Value};
 use hyper::net::HttpsConnector;
 use hyper_native_tls::NativeTlsClient;
+
 use std::io::Read;
+use std::collections::HashMap;
 
 pub struct Client {
     client: HttpClient,
@@ -55,14 +58,13 @@ impl Client {
         return body_response;
     }
 
-    pub fn post<P: serde::Serialize>(&self, path: &str, body: P) -> String {
+    pub fn post(&self, path: &str, map: &HashMap<String, serde_json::Value>) -> String {
         let mut body_response = String::new();
         let url = get_url(path);
-        let body_json = serde_json::to_string(&body);
-        let body = body_json.unwrap();
-        self.client.get(&url)
+        let client_reqwest = reqwest::Client::new().unwrap();
+        client_reqwest.post(&url)
                 .headers(self.get_headers())
-                .body(&format!("r#{:?}#", body))
+                .json(&map)
                 .send()
                 .unwrap()
                 .read_to_string(&mut body_response)

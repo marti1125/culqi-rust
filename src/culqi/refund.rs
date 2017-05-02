@@ -1,12 +1,10 @@
 extern crate serde_json;
 
 use client::Client;
+use std::collections::HashMap;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug)]
 pub struct Refund {
-    pub amount: i32,
-    pub charge_id: String,
-    pub reason: String
 }
 
 impl Refund {
@@ -15,19 +13,20 @@ impl Refund {
         amount: i32,
         charge_id: S,
         reason: S
-    ) -> Refund {
-        Refund {
-            amount: amount,
-            charge_id: charge_id.into(),
-            reason: reason.into()
-        }
+    ) -> HashMap<String, serde_json::Value> {
+        let mut map: HashMap<String, serde_json::Value>;
+        map = HashMap::new();
+        map.insert("amount".to_string(), json!(amount));
+        map.insert("charge_id".to_string(), json!(charge_id.into()));
+        map.insert("reason".to_string(), json!(reason.into()));
+        return map;
     }
 
-    pub fn create(client: &Client, refund: &Refund) -> String {
+    pub fn create(client: &Client, refund: &HashMap<String, serde_json::Value>) -> String {
         client.post("/refunds", refund)
     }
 
-    pub fn all(client: &Client, id: &str) -> String {
+    pub fn retrieve(client: &Client, id: &str) -> String {
         client.get(&format!("/refunds/{}", id))
     }
 

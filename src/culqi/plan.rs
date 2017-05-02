@@ -1,15 +1,10 @@
 extern crate serde_json;
 
 use client::Client;
+use std::collections::HashMap;
 
-#[derive(Debug, Serialize)]
+#[derive(Debug)]
 pub struct Plan {
-    pub name: String,
-    pub amount: i32,
-    pub currency_code: String,
-    pub interval: String,
-    pub interval_count: i32,
-    pub trial_days: i32
 }
 
 impl Plan {
@@ -21,18 +16,19 @@ impl Plan {
         interval: S,
         interval_count: i32,
         trial_days: i32
-    ) -> Plan {
-        Plan {
-            name: name.into(),
-            amount: amount,
-            currency_code: currency_code.into(),
-            interval: interval.into(),
-            interval_count: interval_count,
-            trial_days: trial_days
-        }
+    ) -> HashMap<String, serde_json::Value> {
+        let mut map: HashMap<String, serde_json::Value>;
+        map = HashMap::new();
+        map.insert("name".to_string(), json!(name.into()));
+        map.insert("amount".to_string(), json!(amount));
+        map.insert("currency_code".to_string(), json!(currency_code.into()));
+        map.insert("interval".to_string(), json!(interval.into()));
+        map.insert("interval_count".to_string(), json!(interval_count));
+        map.insert("trial_days".to_string(), json!(trial_days));
+        return map;
     }
 
-    pub fn create(client: &Client, plan: &Plan) -> String {
+    pub fn create(client: &Client, plan: &HashMap<String, serde_json::Value>) -> String {
         client.post("/plans", plan)
     }
 
@@ -40,7 +36,7 @@ impl Plan {
         client.delete(&format!("/plans/{}", id))
     }
 
-    pub fn all(client: &Client, id: &str) -> String {
+    pub fn retrieve(client: &Client, id: &str) -> String {
         client.get(&format!("/plans/{}", id))
     }
 
