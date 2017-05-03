@@ -1,4 +1,9 @@
-# culqi-rust
+culqi-rust
+==========
+
+[![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)](https://github.com/marti1125/culqi-rust/blob/master/LICENSE)
+[![Crates.io](https://img.shields.io/crates/v/rustc-serialize.svg)](https://crates.io/crates/culqi)
+
 Culqi API - Rust
 
 ### Instructions for Build
