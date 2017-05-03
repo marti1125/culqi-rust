@@ -9,6 +9,7 @@ repository = "https://github.com/marti1125/culqi-rust"
 documentation = "https://www.culqi.com/api/"
 keywords = ["culqi", "v2", "api"]
 categories = ["api-bindings"]
+exclude = ["src/main.rs"]
 
 [lib]
 name = "culqi"
