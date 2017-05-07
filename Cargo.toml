@@ -1,6 +1,6 @@
 [package]
 name = "culqi"
-version = "0.1.0"
+version = "0.1.1"
 description = "API bindings for the Culqi v2 HTTP API"
 authors = ["Willy Aguirre <marti1125@gmail.com>"]
 license = "MIT"

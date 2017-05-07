@@ -19,7 +19,7 @@ fn main() {
 
     //let token_json: Value = serde_json::from_str(&get_token).unwrap();
 
-    let new_charge = culqi::Charge::new("1000", "PE", "will@me.com", "ffff");
+    let new_charge = culqi::Charge::new("1000", "PE", "will@me.com", 1,"{token}");
 
     let get_charge = culqi::Charge::create(&client_sk, &new_charge);
 
