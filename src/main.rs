@@ -25,6 +25,12 @@ fn main() {
 
     println!(" Response {:?}", get_charge);
 
+    let ref antifraud_details = culqi::AntifraudDetails::new("av. lima", "lima", "PE", "Will", "Aguirre", "993978969");
+
+    let new_charge_with_antifraud = culqi::Charge::new_with_antifraud_details("1000", "PE", "will@me.com", 1, antifraud_details, "{token}");
+
+    let get_charge_with_antifraud = culqi::Charge::create(&client_sk, &new_charge_with_antifraud);
+
     //let ref token_id = token_json["data"][0]["id"];
 
     //let id = token_id.to_string().replace("\"","");
