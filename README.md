@@ -6,33 +6,23 @@ culqi-rust
 
 Culqi API - Rust
 
-### Instructions for Build
+### Usage
 
-```bash
-cargo build
+Put this in your `Cargo.toml`:
+
+```toml
+[dependencies]
+culqi = "0.1.1"
 ```
 
-#### Ejemplo
-
-> Para la creación de tokens de forma directa(utilizando el API) solo se activaran sus llaves en integración
-para casos de prueba.
+And this in your crate root:
 
 ```rust
 extern crate culqi;
+```
 
-use std::env;
+### Instructions for Generate Doc
 
-fn main() {
-
-    let public_key = env::var("PUBLIC_KEY").unwrap();
-
-    let client_pk = culqi::Client::new(&public_key);
-
-    let new_token = culqi::Token::new("4111111111111111","123",9, 2020,"test@test.com");
-
-    let get_token = culqi::Token::create(&client_sk, &new_token);
-
-    println!(" Response {:?}", get_token);
-
-}
+```bash
+cargo rustdoc --lib
 ```
