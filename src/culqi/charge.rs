@@ -14,6 +14,8 @@ impl Charge {
         currency_code: S,
         email: S,
         installments: i32,
+        metadata: Option<&HashMap<String, serde_json::Value>>,
+        antifraud_details: Option<&HashMap<String, serde_json::Value>>,
         source_id: S
     ) -> HashMap<String, serde_json::Value> {
         let mut map: HashMap<String, serde_json::Value>;
@@ -22,46 +24,12 @@ impl Charge {
         map.insert("currency_code".to_string(), json!(currency_code.into()));
         map.insert("email".to_string(), json!(email.into()));
         map.insert("installments".to_string(), json!(installments));
-        map.insert("source_id".to_string(), json!(source_id.into()));
-        return map;
-    }
-
-    pub fn new_with_antifraud_details<S: Into<String>>(
-        amount: S,
-        currency_code: S,
-        email: S,
-        installments: i32,
-        antifraud_details: &HashMap<String, serde_json::Value>,
-        source_id: S
-    ) -> HashMap<String, serde_json::Value> {
-        let mut map: HashMap<String, serde_json::Value>;
-        map = HashMap::new();
-        map.insert("amount".to_string(), json!(amount.into()));
-        map.insert("currency_code".to_string(), json!(currency_code.into()));
-        map.insert("email".to_string(), json!(email.into()));
-        map.insert("installments".to_string(), json!(installments));
-        map.insert("antifraud_details".to_string(), json!(antifraud_details));
-        map.insert("source_id".to_string(), json!(source_id.into()));
-        return map;
-    }
-
-    pub fn new_full<S: Into<String>>(
-        amount: S,
-        currency_code: S,
-        email: S,
-        installments: i32,
-        antifraud_details: &HashMap<String, serde_json::Value>,
-        metadata: &HashMap<String, serde_json::Value>,
-        source_id: S
-    ) -> HashMap<String, serde_json::Value> {
-        let mut map: HashMap<String, serde_json::Value>;
-        map = HashMap::new();
-        map.insert("amount".to_string(), json!(amount.into()));
-        map.insert("currency_code".to_string(), json!(currency_code.into()));
-        map.insert("email".to_string(), json!(email.into()));
-        map.insert("installments".to_string(), json!(installments));
-        map.insert("antifraud_details".to_string(), json!(antifraud_details));
-        map.insert("metadata".to_string(), json!(metadata));
+        if !metadata.is_none() {
+            map.insert("metadata".to_string(), json!(metadata));
+        }
+        if !antifraud_details.is_none() {
+            map.insert("antifraud_details".to_string(), json!(antifraud_details));
+        }
         map.insert("source_id".to_string(), json!(source_id.into()));
         return map;
     }

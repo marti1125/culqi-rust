@@ -15,7 +15,9 @@ impl Plan {
         currency_code: S,
         interval: S,
         interval_count: i32,
-        trial_days: i32
+        trial_days: i32,
+        limit: Option<i32>,
+        metadata: Option<HashMap<String, serde_json::Value>>
     ) -> HashMap<String, serde_json::Value> {
         let mut map: HashMap<String, serde_json::Value>;
         map = HashMap::new();
@@ -25,6 +27,12 @@ impl Plan {
         map.insert("interval".to_string(), json!(interval.into()));
         map.insert("interval_count".to_string(), json!(interval_count));
         map.insert("trial_days".to_string(), json!(trial_days));
+        if !limit.is_none() {
+            map.insert("limit".to_string(), json!(limit));
+        }
+        if !metadata.is_none() {
+            map.insert("metadata".to_string(), json!(metadata));
+        }
         return map;
     }
 

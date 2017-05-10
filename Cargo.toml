@@ -1,6 +1,6 @@
 [package]
 name = "culqi"
-version = "0.1.1"
+version = "0.2.0"
 description = "API bindings for the Culqi v2 HTTP API"
 authors = ["Willy Aguirre <marti1125@gmail.com>"]
 license = "MIT"
@@ -9,7 +9,7 @@ repository = "https://github.com/marti1125/culqi-rust"
 documentation = "https://www.culqi.com/api/"
 keywords = ["culqi", "v2", "api"]
 categories = ["api-bindings"]
-exclude = ["examples/main.rs"]
+exclude = ["src/main.rs", "examples/new_charge.rs"]
 
 [lib]
 name = "culqi"

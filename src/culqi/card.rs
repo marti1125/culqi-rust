@@ -11,12 +11,20 @@ impl Card {
 
     pub fn new<S: Into<String>>(
         customer_id: S,
-        token_id: S
+        token_id: S,
+        validate: Option<bool>,
+        metadata: Option<HashMap<String, serde_json::Value>>
     ) -> HashMap<String, serde_json::Value> {
         let mut map: HashMap<String, serde_json::Value>;
         map = HashMap::new();
         map.insert("customer_id".to_string(), json!(customer_id.into()));
         map.insert("customer_id".to_string(), json!(token_id.into()));
+        if !validate.is_none() {
+            map.insert("validate".to_string(), json!(validate));
+        }
+        if !metadata.is_none() {
+            map.insert("metadata".to_string(), json!(metadata));
+        }
         return map;
     }
 

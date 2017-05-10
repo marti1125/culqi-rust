@@ -13,23 +13,19 @@ fn main() {
     let client_pk = culqi::Client::new(&public_key);
     let client_sk = culqi::Client::new(&secret_key);
 
-    let new_token = culqi::Token::new("4111111111111111","123",9, 2020,"test@test.com");
+    let new_token = culqi::Token::new("4111111111111111","123",9, 2020,"test@test.com", None);
 
     //let get_token = culqi::Token::create(&client_pk, &new_token);
 
     //let token_json: Value = serde_json::from_str(&get_token).unwrap();
 
-    let new_charge = culqi::Charge::new("1000", "PE", "will@me.com", 1,"{token}");
+    let ref antifraud_details = culqi::AntifraudDetails::new("av. lima", "lima", "PE", "Will", "Aguirre", "993978969");
+
+    let new_charge = culqi::Charge::new("1000", "PE", "will@me.com", 1, None, None,"{token}");
 
     let get_charge = culqi::Charge::create(&client_sk, &new_charge);
 
     println!(" Response {:?}", get_charge);
-
-    let ref antifraud_details = culqi::AntifraudDetails::new("av. lima", "lima", "PE", "Will", "Aguirre", "993978969");
-
-    let new_charge_with_antifraud = culqi::Charge::new_with_antifraud_details("1000", "PE", "will@me.com", 1, antifraud_details, "{token}");
-
-    let get_charge_with_antifraud = culqi::Charge::create(&client_sk, &new_charge_with_antifraud);
 
     //let ref token_id = token_json["data"][0]["id"];
 

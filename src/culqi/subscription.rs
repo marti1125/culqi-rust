@@ -11,12 +11,16 @@ impl Subscription {
 
     pub fn new<S: Into<String>>(
         card_id: S,
-        plan_id: S
+        plan_id: S,
+        metadata: Option<HashMap<String, serde_json::Value>>
     ) -> HashMap<String, serde_json::Value> {
         let mut map: HashMap<String, serde_json::Value>;
         map = HashMap::new();
         map.insert("card_id".to_string(), json!(card_id.into()));
         map.insert("plan_id".to_string(), json!(plan_id.into()));
+        if !metadata.is_none() {
+            map.insert("metadata".to_string(), json!(metadata));
+        }
         return map;
     }
 

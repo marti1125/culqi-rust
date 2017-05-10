@@ -16,7 +16,8 @@ impl Customer {
         address: S,
         address_city: S,
         country_code: S,
-        phone_number: S
+        phone_number: S,
+        metadata: Option<HashMap<String, serde_json::Value>>
     ) -> HashMap<String, serde_json::Value> {
         let mut map: HashMap<String, serde_json::Value>;
         map = HashMap::new();
@@ -27,6 +28,9 @@ impl Customer {
         map.insert("address_city".to_string(), json!(address_city.into()));
         map.insert("country_code".to_string(), json!(country_code.into()));
         map.insert("phone_number".to_string(), json!(phone_number.into()));
+        if !metadata.is_none() {
+            map.insert("metadata".to_string(), json!(metadata));
+        }
         return map;
     }
 

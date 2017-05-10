@@ -14,7 +14,8 @@ impl Token {
         cvv: S,
         expiration_month: i32,
         expiration_year: i32,
-        email: S
+        email: S,
+        metadata: Option<HashMap<String, serde_json::Value>>
     ) -> HashMap<String, serde_json::Value> {
         let mut map: HashMap<String, serde_json::Value>;
         map = HashMap::new();
@@ -23,6 +24,9 @@ impl Token {
         map.insert("expiration_month".to_string(), json!(expiration_month));
         map.insert("expiration_year".to_string(), json!(expiration_year));
         map.insert("email".to_string(), json!(email.into()));
+        if !metadata.is_none() {
+            map.insert("metadata".to_string(), json!(metadata));
+        }
         return map;
     }
 
