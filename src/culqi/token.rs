@@ -38,4 +38,12 @@ impl Token {
         client.get(&format!("/tokens/{}", id))
     }
 
+    pub fn all(client: &Client) -> String {
+        let mut main_url = String::from("/tokens");
+        main_url.push_str("?limit");
+        main_url.push_str("=50");
+        println!("url {:?}", main_url);
+        client.get(&main_url)
+    }
+
 }

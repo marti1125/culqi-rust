@@ -49,6 +49,7 @@ impl Client {
     pub fn get(&self, path: &str) -> String {
         let mut body_response = String::new();
         let url = get_url(path);
+        println!("fin url {:?}", url);
         self.client.get(&url)
                 .headers(self.get_headers())
                 .send()

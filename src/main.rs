@@ -3,29 +3,31 @@ extern crate serde_json;
 extern crate culqi;
 
 use std::env;
-use serde_json::{Value};
 
 fn main() {
 
-    let public_key = env::var("PUBLIC_KEY").unwrap();
+    //let public_key = env::var("PUBLIC_KEY").unwrap();
     let secret_key = env::var("SECRET_KEY").unwrap();
 
-    let client_pk = culqi::Client::new(&public_key);
+    //let client_pk = culqi::Client::new(&public_key);
     let client_sk = culqi::Client::new(&secret_key);
 
-    let new_token = culqi::Token::new("4111111111111111","123",9, 2020,"test@test.com", None);
+    //let new_token = culqi::Token::new("4111111111111111","123",9, 2020,"test@test.com", None);
+
+    let all_tokens = culqi::Token::all(&client_sk);
+    print!("r {:?}", all_tokens);
 
     //let get_token = culqi::Token::create(&client_pk, &new_token);
 
     //let token_json: Value = serde_json::from_str(&get_token).unwrap();
 
-    let ref antifraud_details = culqi::AntifraudDetails::new("av. lima", "lima", "PE", "Will", "Aguirre", "993978969");
+    /*let ref antifraud_details = culqi::AntifraudDetails::new("av. lima", "lima", "PE", "Will", "Aguirre", "993978969");
 
     let new_charge = culqi::Charge::new("1000", "PE", "will@me.com", 1, None, None,"{token}");
 
     let get_charge = culqi::Charge::create(&client_sk, &new_charge);
 
-    println!(" Response {:?}", get_charge);
+    println!(" Response {:?}", get_charge);*/
 
     //let ref token_id = token_json["data"][0]["id"];
 
