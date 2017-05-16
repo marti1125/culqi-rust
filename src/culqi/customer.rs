@@ -46,4 +46,53 @@ impl Customer {
         client.get(&format!("/customers/{}", id))
     }
 
+    pub fn all(
+        client: &Client,
+        first_name: Option<String>,
+        last_name: Option<String>,
+        email: Option<String>,
+        address: Option<String>,
+        address_city: Option<String>,
+        phone_number: Option<String>,
+        country_code: Option<String>,
+        limit: Option<String>
+    ) -> String {
+        let mut query_url = String::from("/customers");
+        query_url.push_str("?limit");
+        if limit.is_none() {
+            query_url.push_str("=50");
+        } else {
+            query_url.push_str(&format!("={:?}", limit));
+        }
+        if !first_name.is_none() {
+            query_url.push_str("&first_name");
+            query_url.push_str(&format!("={:?}", first_name));
+        }
+        if !last_name.is_none() {
+            query_url.push_str("&last_name");
+            query_url.push_str(&format!("={:?}", last_name));
+        }
+        if !email.is_none() {
+            query_url.push_str("&email");
+            query_url.push_str(&format!("={:?}", email));
+        }
+        if !address.is_none() {
+            query_url.push_str("&address");
+            query_url.push_str(&format!("={:?}", address));
+        }
+        if !address_city.is_none() {
+            query_url.push_str("&address_city");
+            query_url.push_str(&format!("={:?}", address_city));
+        }
+        if !phone_number.is_none() {
+            query_url.push_str("&phone_number");
+            query_url.push_str(&format!("={:?}", phone_number));
+        }
+        if !country_code.is_none() {
+            query_url.push_str("&country_code");
+            query_url.push_str(&format!("={:?}", country_code));
+        }
+        client.get(&query_url)
+    }
+
 }
