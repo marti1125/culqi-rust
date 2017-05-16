@@ -2,6 +2,7 @@ extern crate serde_json;
 
 use client::Client;
 use std::collections::HashMap;
+use std::iter::IntoIterator;
 
 #[derive(Debug)]
 pub struct Charge {
@@ -44,6 +45,37 @@ impl Charge {
 
     pub fn retrieve(client: &Client, id: &str) -> String {
         client.get(&format!("/charges/{}", id))
+    }
+
+    pub fn all(
+        client: &Client,
+        query_params: Option<HashMap<String, String>>,
+        limit: Option<String>,
+        before: Option<String>,
+        after: Option<String>
+    ) -> String {
+        let mut query_url = String::from("/charges");
+        query_url.push_str("?limit");
+        if limit.is_none() {
+            query_url.push_str("=50");
+        } else {
+            query_url.push_str(&format!("={:?}", limit));
+        }
+        if !query_params.is_none() {
+            for (k, v) in query_params.into_iter().flat_map(IntoIterator::into_iter) {
+                query_url.push_str(&format!("&{:?}", k));
+                query_url.push_str(&format!("={:?}", v));
+            }
+        }        
+        if !before.is_none() {
+            query_url.push_str("&before");
+            query_url.push_str(&format!("={:?}", before));
+        }
+        if !after.is_none() {
+            query_url.push_str("&after");
+            query_url.push_str(&format!("={:?}", after));
+        }
+        client.get(&query_url)
     }
 
 }
