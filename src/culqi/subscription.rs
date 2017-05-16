@@ -48,7 +48,7 @@ impl Subscription {
         status: Option<String>,
         limit: Option<String>
     ) -> String {
-        let mut query_url = String::from("/tokens");
+        let mut query_url = String::from("/subscriptions");
         query_url.push_str("?limit");
         if limit.is_none() {
             query_url.push_str("=50");
