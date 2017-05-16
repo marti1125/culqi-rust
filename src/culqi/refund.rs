@@ -36,36 +36,12 @@ impl Refund {
 
     pub fn all(
         client: &Client,
-        creation_date: Option<String>,
-        creation_date_from: Option<String>,
-        creation_date_to: Option<String>,
-        reason: Option<String>,
-        limit: Option<String>
+        query_params: Option<HashMap<String, String>>,
+        limit: Option<String>,
+        before: Option<String>,
+        after: Option<String>
     ) -> String {
-        let mut query_url = String::from("/refunds");
-        query_url.push_str("?limit");
-        if limit.is_none() {
-            query_url.push_str("=50");
-        } else {
-            query_url.push_str(&format!("={:?}", limit));
-        }
-        if !creation_date.is_none() {
-            query_url.push_str("&creation_date");
-            query_url.push_str(&format!("={:?}", creation_date));
-        }
-        if !creation_date_from.is_none() {
-            query_url.push_str("&creation_date_from");
-            query_url.push_str(&format!("={:?}", creation_date_from));
-        }
-        if !creation_date_to.is_none() {
-            query_url.push_str("&creation_date_to");
-            query_url.push_str(&format!("={:?}", creation_date_to));
-        }
-        if !reason.is_none() {
-            query_url.push_str("&reason");
-            query_url.push_str(&format!("={:?}", reason));
-        }
-        client.get(&query_url)
+        client.get_filter("/refunds", query_params, limit, before, after)
     }
 
 }

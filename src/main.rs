@@ -14,7 +14,7 @@ fn main() {
 
     //let new_token = culqi::Token::new("4111111111111111","123",9, 2020,"test@test.com", None);
 
-    let all_tokens = culqi::Token::all(&client_sk, None, None, None, None, None, None, None, None, None);
+    let all_tokens = culqi::Token::all(&client_sk, None, None, None, None);
     print!("r {:?}", all_tokens);
 
     //let get_token = culqi::Token::create(&client_pk, &new_token);
