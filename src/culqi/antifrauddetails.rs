@@ -8,6 +8,13 @@ pub struct AntifraudDetails {
 
 impl AntifraudDetails {
 
+    //! # Examples
+    //!
+    //! ```
+    //! let ref antifraud_details = culqi::AntifraudDetails::new("av. lima", "lima", "PE", "Will", "Aguirre", "993978969");
+    //! ```
+    //!
+
     pub fn new<S: Into<String>>(
         address: S,
         address_city: S,

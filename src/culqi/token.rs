@@ -9,6 +9,25 @@ pub struct Token {
 
 impl Token {
 
+    //! # Examples
+    //!
+    //! ```
+    //! let client = culqi::Client::new("{KEY}");
+    //! ```
+    //!
+    //! ```
+    //! let new_token = culqi::Token::new("4111111111111111","123",9,2020,"test@test.com", None);
+    //! ```
+    //!
+    //! ```
+    //! let create_token = culqi::Token::create(&client, &new_token);
+    //! ```
+    //!
+    //! ```
+    //! let create_token = culqi::Token::retrieve(&client, "{ID}");
+    //! ```
+    //!
+    
     pub fn new<S: Into<String>>(
         card_number: S,
         cvv: S,
