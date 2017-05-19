@@ -27,7 +27,33 @@ impl Token {
     //! let create_token = culqi::Token::retrieve(&client, "{ID}");
     //! ```
     //!
-    
+    //! ```
+    //! use std::collections::HashMap;
+    //! ```
+    //!
+    //! ```
+    //! let mut token_filter: HashMap<String, String>;
+    //! token_filter = HashMap::new();
+    //! token_filter.insert("card_brand".to_string(), "VISA".to_string());
+    //! token_filter.insert("card_type".to_string(), "DEBITO".to_string());
+    //! token_filter.insert("device_type".to_string(), "DESKTOP".to_string());
+    //! token_filter.insert("bin".to_string(), "411111".to_string());
+    //! token_filter.insert("country_code".to_string(), "PE".to_string());
+    //! ```
+    //!
+    //! It must uses [Unix Timestamp](http://www.unixtimestamp.com/index.php)
+    //!
+    //! ```
+    //! token_filter.insert("creation_date".to_string(), "1484006400".to_string());
+    //! token_filter.insert("creation_date_from".to_string(), "1479600000".to_string());
+    //! token_filter.insert("creation_date_to".to_string(), "1484006400".to_string());
+    //! ```
+    //!
+    //! ```
+    //! let all_tokens = culqi::Token::all(&client_sk, Some(token_filter), None, None, None);
+    //! ```
+    //!
+
     pub fn new<S: Into<String>>(
         card_number: S,
         cvv: S,
