@@ -24,7 +24,7 @@ impl Token {
     //! ```
     //!
     //! ```
-    //! let create_token = culqi::Token::retrieve(&client, "{ID}");
+    //! let get_token = culqi::Token::retrieve(&client, "{ID}");
     //! ```
     //!
     //! ```
