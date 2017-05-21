@@ -9,6 +9,57 @@ pub struct Plan {
 
 impl Plan {
 
+    //! # Examples
+    //!
+    //! ```
+    //! let client = culqi::Client::new("{KEY}");
+    //! ```
+    //!
+    //! ```
+    //! let new_plan = culqi::Plan::new("Hooli Subscription",1000,"PEN","meses",3,15,2,None);
+    //! ```
+    //!
+    //! ```
+    //! let create_plan = culqi::Plan::create(&client, &new_plan);
+    //! ```
+    //!
+    //! ```
+    //! let get_plan = culqi::Plan::retrieve(&client, "{ID}");
+    //! ```
+    //!
+    //! ```
+    //! let delete_plan = culqi::Plan::delete(&client, "{ID}");
+    //! ```
+    //!
+    //!
+    //! Here you are the list of filters you can use for get Refunds
+    //!
+    //! ```
+    //! use std::collections::HashMap;
+    //! ```
+    //!
+    //! ```
+    //! let mut plan_filter: HashMap<String, String>;
+    //! plan_filter = HashMap::new();
+    //! plan_filter.insert("amount".to_string(), "100".to_string());
+    //! plan_filter.insert("min_amount".to_string(), "100".to_string());
+    //! plan_filter.insert("max_amount".to_string(), "2000".to_string());
+    //! plan_filter.insert("interval".to_string(), "meses".to_string());
+    //! ```
+    //!
+    //! It must uses [Unix Timestamp](http://www.unixtimestamp.com/index.php)
+    //!
+    //! ```
+    //! plan_filter.insert("creation_date".to_string(), "1484006400".to_string());
+    //! plan_filter.insert("creation_date_from".to_string(), "1479600000".to_string());
+    //! plan_filter.insert("creation_date_to".to_string(), "1484006400".to_string());
+    //! ```
+    //!
+    //! ```
+    //! let all_plans = culqi::Plan::all(&client, Some(plan_filter), None, None, None);
+    //! ```
+    //!
+
     pub fn new<S: Into<String>>(
         name: S,
         amount: i32,
