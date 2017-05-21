@@ -32,7 +32,7 @@ impl Plan {
     //! ```
     //!
     //!
-    //! Here you are the list of filters you can use for get Refunds
+    //! Here you are the list of filters you can use for get Plans
     //!
     //! ```
     //! use std::collections::HashMap;

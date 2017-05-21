@@ -9,6 +9,58 @@ pub struct Card {
 
 impl Card {
 
+    //! # Examples
+    //!
+    //! ```
+    //! let client = culqi::Client::new("{KEY}");
+    //! ```
+    //!
+    //! ```
+    //! let new_card = culqi::Card::new("{CUSTOMER_ID}","{TOKEN_ID}",None,None);
+    //! ```
+    //!
+    //! ```
+    //! let create_card = culqi::Card::create(&client, &new_card);
+    //! ```
+    //!
+    //! ```
+    //! let get_card = culqi::Card::retrieve(&client, "{ID}");
+    //! ```
+    //!
+    //! ```
+    //! let delete_card = culqi::Card::delete(&client, "{ID}");
+    //! ```
+    //!
+    //!
+    //! Here you are the list of filters you can use for get Cards
+    //!
+    //! ```
+    //! use std::collections::HashMap;
+    //! ```
+    //!
+    //! ```
+    //! let mut card_filter: HashMap<String, String>;
+    //! card_filter = HashMap::new();
+    //! card_filter.insert("card_brand".to_string(), "visa".to_string());
+    //! card_filter.insert("card_type".to_string(), "debito".to_string());
+    //! card_filter.insert("device_type".to_string(), "escritorio".to_string());
+    //! card_filter.insert("bin".to_string(), "411111".to_string());
+    //! card_filter.insert("country_code".to_string(), "PE".to_string());
+    //! ```
+    //!
+    //! It must uses [Unix Timestamp](http://www.unixtimestamp.com/index.php)
+    //!
+    //! ```
+    //! card_filter.insert("creation_date".to_string(), "1484006400".to_string());
+    //! card_filter.insert("creation_date_from".to_string(), "1479600000".to_string());
+    //! card_filter.insert("creation_date_to".to_string(), "1484006400".to_string());
+    //! ```
+    //!
+    //! ```
+    //! let all_cards = culqi::Card::all(&client, Some(card_filter), None, None, None);
+    //! ```
+    //!
+
     pub fn new<S: Into<String>>(
         customer_id: S,
         token_id: S,
