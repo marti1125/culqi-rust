@@ -53,7 +53,7 @@ impl Token {
     //! ```
     //!
     //! ```
-    //! let all_tokens = culqi::Token::all(&client_sk, Some(token_filter), None, None, None);
+    //! let all_tokens = culqi::Token::all(&client, Some(token_filter), None, None, None);
     //! ```
     //!
 

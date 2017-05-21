@@ -84,7 +84,7 @@ impl Charge {
     //! ```
     //!
     //! ```
-    //! let all_charges = culqi::Charge::all(&client_sk, Some(charge_filter), None, None, None);
+    //! let all_charges = culqi::Charge::all(&client, Some(charge_filter), None, None, None);
     //! ```
     //!
 
