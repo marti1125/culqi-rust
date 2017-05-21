@@ -27,6 +27,9 @@ impl Token {
     //! let get_token = culqi::Token::retrieve(&client, "{ID}");
     //! ```
     //!
+    //!
+    //! Here you are the list of filters you can use for get Tokens
+    //!
     //! ```
     //! use std::collections::HashMap;
     //! ```

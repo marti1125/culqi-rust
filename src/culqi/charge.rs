@@ -35,6 +35,8 @@ impl Charge {
     //! let capture_charge = culqi::Charge::capture(&client, "{ID}");
     //! ```
     //!
+    //! Here you are the list of filters you can use for get Charges
+    //!
     //! ```
     //! use std::collections::HashMap;
     //! ```
@@ -42,6 +44,35 @@ impl Charge {
     //! ```
     //! let mut charge_filter: HashMap<String, String>;
     //! charge_filter = HashMap::new();
+    //! charge_filter.insert("amount".to_string(), "100".to_string());
+    //! charge_filter.insert("min_amount".to_string(), "100".to_string());
+    //! charge_filter.insert("max_amount".to_string(), "1000".to_string());
+    //! charge_filter.insert("installments".to_string(), "0".to_string());
+    //! charge_filter.insert("min_installments".to_string(), "2".to_string());
+    //! charge_filter.insert("max_installments".to_string(), "6".to_string());
+    //! charge_filter.insert("max_installments".to_string(), "6".to_string());
+    //! charge_filter.insert("currency_code".to_string(), "PEN".to_string());
+    //! charge_filter.insert("fraud_score".to_string(), "50".to_string());
+    //! charge_filter.insert("min_fraud_score".to_string(), "10".to_string());
+    //! charge_filter.insert("max_fraud_score".to_string(), "50".to_string());
+    //! charge_filter.insert("first_name".to_string(), "Will".to_string());
+    //! charge_filter.insert("last_name".to_string(), "Muro".to_string());
+    //! charge_filter.insert("email".to_string(), "wmuro@me.com".to_string());
+    //! charge_filter.insert("address".to_string(), "Av. Lima 123".to_string());
+    //! charge_filter.insert("address_city".to_string(), "LIMA".to_string());
+    //! charge_filter.insert("phone_number".to_string(), "999999999".to_string());
+    //! charge_filter.insert("country_code".to_string(), "PE".to_string());
+    //! charge_filter.insert("capture".to_string(), "true".to_string());
+    //! charge_filter.insert("dispute".to_string(), "true".to_string());
+    //! charge_filter.insert("paid".to_string(), "true".to_string());
+    //! charge_filter.insert("customer_id".to_string(), "{CUSTOMER_ID}".to_string());
+    //! charge_filter.insert("fee".to_string(), "20".to_string());
+    //! charge_filter.insert("min_fee".to_string(), "20".to_string());
+    //! charge_filter.insert("max_fee".to_string(), "60".to_string());
+    //! charge_filter.insert("card_brand".to_string(), "visa".to_string());
+    //! charge_filter.insert("card_type".to_string(), "debito".to_string());
+    //! charge_filter.insert("device_type".to_string(), "tablet".to_string());
+    //! charge_filter.insert("bin".to_string(), "411111".to_string());
     //! ```
     //!
     //! It must uses [Unix Timestamp](http://www.unixtimestamp.com/index.php)
