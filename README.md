@@ -21,6 +21,8 @@ And this in your crate root:
 extern crate culqi;
 ```
 
+[An example with Rocket.rs](https://github.com/marti1125/culqi-rust-example)
+
 ### Instructions for Generate Doc
 
 ```bash
